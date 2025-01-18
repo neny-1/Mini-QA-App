@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Retrieval-Augmented Generation (RAG) App
 
 An AI-powered application that leverages Retrieval-Augmented Generation (RAG) to provide accurate and context-aware responses. The app ingests data files, processes them into a knowledge base, and delivers user-specific answers through an interactive API.
@@ -58,3 +59,7 @@ Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
 
 
 This is a practical project based on the Retrieval-Augmented Generation (RAG) model for question answering. The project is from Abu Bakr Soliman YouTube channel, and here is the playlist link: [YouTube Playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj). You can also find the project repository on GitHub at this link: [GitHub Project](https://github.com/bakrianoo/mini-rag/tree/main).
+=======
+# Mini-QA-App
+developing a Mini QA App with data ingestion, text retrieval, and question-answering capabilities
+>>>>>>> 077f6e8c7270172086c881873fb512987dddb08a
