@@ -1,65 +1,256 @@
-<<<<<<< HEAD
-# Retrieval-Augmented Generation (RAG) App
+# Mini-QA-App
 
-An AI-powered application that leverages Retrieval-Augmented Generation (RAG) to provide accurate and context-aware responses. The app ingests data files, processes them into a knowledge base, and delivers user-specific answers through an interactive API.
-
-## Features
-- Upload data files in `.txt` and `.pdf` formats to create a searchable knowledge base.
-- Retrieve precise and contextually relevant responses based on user queries.
-- Scalable and modular design using the **MVC architecture**.
-- Powered by **Qdrant** for high-performance vector-based search.
-- Integrated with **Ollama** for enhanced AI capabilities.
-- Future Plans: Extend support for more file formats.
-
-## Technologies Used
-- **Backend:** FastAPI, Python
-- **AI/ML Tools:** OpenAI API, Cohere API, Ollama
-- **Vector Database:** Qdrant
-- **Database:** MongoDB
-- **Containerization:** Docker
-- **Architecture:** MVC (Model-View-Controller)
+Mini-QA-App is a question-answering application designed for processing and retrieving relevant information from user-provided data. The app allows users to upload data files, and when users submit queries, the app processes the query, finds the most relevant answers based on similarity, and provides the response. If a query is out of scope, the app will not provide an answer.
 
 ## How It Works
-1. **Data Ingestion:** Upload a `.txt` or `.pdf` file containing data to the app.
-2. **Knowledge Base Creation:** The app processes the file and converts it into a vectorized format using Qdrant and AI models.
-3. **Query Processing:** Users can query the app via API endpoints, and the app retrieves the most relevant answers from the knowledge base.
 
-## Requirements
+1. **Data Ingestion**: Users upload data files (e.g., `.txt` or `.pdf` formats) to the application.
+2. **Validation**: The app checks the format and structure of the uploaded files to ensure they are valid.
+3. **Data Chunking**: After validation, the data is split into smaller chunks for more efficient processing and retrieval.
+4. **Data Storage**: The processed data chunks are stored in MongoDB (Studio 3T).
+5. **Vectorization**: The data chunks are converted into vectors using Qdrant, enabling fast similarity-based searches.
+6. **Query Processing**: Upon query submission, the app vectorizes the query and performs a similarity search to find the most relevant data chunks.
+7. **Handling Out-of-Scope Queries**: If the query doesn't match the data, the app will not provide a response.
 
-- Python 3.8 or later
+## Technologies Used
 
-### Install Python using MiniConda
+- **Backend**: FastAPI, Python
+- **AI/ML Tools**: OpenAI API, Cohere API
+- **Vector Database**: Qdrant
+- **Database**: MongoDB (Studio 3T)
+- **Containerization**: Docker
+- **Architecture**: MVC (Model-View-Controller)
 
-1) Download and install MiniConda from [here](https://docs.anaconda.com/free/miniconda/#quick-command-line-install)
-2) Create a new environment using the following command:
-   ```bash
-   $ conda create -n mini-rag python=3.8
+## How to Install and Run the Application
 
-### (Optional) Setup you command line interface for better readability
+### Prerequisites
 
-```bash
-export PS1="\[\033[01;32m\]\u@\h:\w\n\[\033[00m\]\$ "
-```
+Before you can run the application, you need to install the following tools:
 
-## Installation
+1. **Install Miniconda (if Conda is not installed)**:
+   - If you don’t have Conda installed, download and install **Miniconda** from [here](https://docs.conda.io/en/latest/miniconda.html). Miniconda is a lightweight version of Conda.
+   - Once Miniconda is installed, verify the installation by running:
+     ```bash
+     conda --version
+     ```
 
-### Install the required packages
+2. **[Visual Studio Code (VSCode)](https://code.visualstudio.com/)**
+   - Install Visual Studio Code for a powerful and lightweight code editor.
 
-```bash
-$ pip install -r requirements.txt
-```
+3. **[Docker](https://www.docker.com/get-started)**
+   - Docker is optional for containerizing the application.
+   - Docker allows you to run the app in an isolated environment.
+   Once Docker is installed:
+   - Start Docker Desktop and make sure it's running.
 
-### Setup the environment variables
+4. **[Rustup](https://rustup.rs/)**
+   - Rustup is the Rust programming language installer. It's necessary for any development involving Rust-based dependencies.
 
-```bash
-$ cp .env.example .env
-```
+5. **[Studio 3T MongoDB](https://studio3t.com/)**
+   - **Studio 3T** is a MongoDB GUI tool used to manage and query your MongoDB instance.
+   
+6. **[Postman](https://www.postman.com/downloads/)**
+   - Postman is used for testing APIs and sending HTTP requests.
 
-Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
+---
+
+### Installation Steps
+
+1. **Clone the Repository**:
+   - Open **VSCode** and open the terminal in VSCode (`Ctrl + ~`).
+   - Clone the repository by running:
+     ```bash
+     git clone https://github.com/neny-1/Mini-QA-App.git
+     cd Mini-QA-App
+     ```
+
+2. **Create a Conda Environment**:
+   - In the terminal, create a Conda environment for the project:
+     ```bash
+     conda create -n mini-qa-app-env python=3.9
+     ```
+   - Activate the environment:
+     ```bash
+     conda activate mini-qa-app-env
+     ```
+
+3. **Install Dependencies**:
+   - Install all the required dependencies from the `requirements.txt` file:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+4. **Navigate to the `src` Folder**:
+   - Before setting environment variables, navigate to the `src` folder:
+     ```bash
+     cd src
+     ```
+
+5. **Set Environment Variables**:
+   - Copy the example environment file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Open `.env` and set the required variables, such as `COHERE_API_KEY` or `OPENAI_API_KEY`.
+
+---
+### Run the Application
+
+1. **Run Docker Using Docker Compose**:
+  - Navigate to the folder where your `docker-compose.yml` file is located in docker folder.
+  - Right-click and select **Compose Up** (if using Docker Desktop).
+
+   This will start all the services defined in the `docker-compose.yml` file, including MongoDB.
+
+2. **Navigate to the `src` Folder**:
+   - In the terminal, navigate to the `src` directory where the main app code is located:
+     ```bash
+     cd src
+     ```
+
+3. **Run the App Using Uvicorn**:
+   - Once inside the `src` directory, start the app using Uvicorn:
+     ```bash
+     uvicorn main:app --reload --host 0.0.0.0 --port 8080
+     ```
+   - This command will start the FastAPI app and make it accessible at [http://127.0.0.1:8080](http://127.0.0.1:8080).
+
+4. **Verify the Application**:
+   - Open your browser and navigate to [http://127.0.0.1:8080](http://127.0.0.1:8080). You should see the FastAPI interactive documentation for the app.
+
+---
 
 
-This is a practical project based on the Retrieval-Augmented Generation (RAG) model for question answering. The project is from Abu Bakr Soliman YouTube channel, and here is the playlist link: [YouTube Playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj). You can also find the project repository on GitHub at this link: [GitHub Project](https://github.com/bakrianoo/mini-rag/tree/main).
-=======
-# Mini-QA-App
-developing a Mini QA App with data ingestion, text retrieval, and question-answering capabilities
->>>>>>> 077f6e8c7270172086c881873fb512987dddb08a
+### Next Steps
+
+Once the app is running, you can proceed with setting up the database and testing the app using Postman.
+
+---
+
+### Database Setup
+
+1. **Connecting to MongoDB Using Studio 3T**:
+   - Open **Studio 3T** and click on **Connect** to create a new connection and select Manually configure my connection settings.
+   - Set the connection details as:
+     - **Host**: `localhost` 
+     - **Port**: `27017`
+   - Select **Test Connection** to ensure it's working.
+---
+
+### Using Postman to Test the Application
+
+Once the app is running, and the database is set up, you can use Postman to send queries to your app.
+# Postman API Requests for Mini-QA-App
+
+You can use Postman to test the endpoints of the Mini-QA-App by making HTTP requests to the routes. Below is a list of available API routes and the expected methods, URLs, and request bodies.
+
+### 1. **Welcome Route** - `GET /`
+   - **URL**: `http://127.0.0.1:8080/`
+   - **Method**: `GET`
+   - **Description**: This is the welcome route to check if the server is running.
+   - **Response**: A basic message indicating the status of the application.
+   ![image](https://github.com/user-attachments/assets/ff553e26-adf8-4504-a8da-bb8f8dbfc656)
+
+
+---
+
+### 2. **Upload Data File** - `POST /upload/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/upload/1`  
+     *(Replace `1` with your project ID, where the same topic or field will share the same project ID.)*
+   - **Method**: `POST`
+   - **Request Body**: 
+     - This request uploads the data file into assets folder.
+     - The file should be uploaded in the `file` parameter.
+   ![image](https://github.com/user-attachments/assets/c32edd55-b2b5-46c0-99ff-19a75ba23507)
+---
+
+### 3. **Process Data File** - `POST /process/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/process/1`  
+     *(Replace `1` with your project ID)*
+   - **Method**: `POST`
+   - **Request Body**:
+     ```json
+     {
+       "chunk_size": 300,
+       "overlap_size": 5,
+       "do_reset": 1
+     }
+     ```
+   - **Description**: This route processes the uploaded data file with chunk size, overlap size, and a flag for resetting.
+     ![image](https://github.com/user-attachments/assets/788816c7-eee9-40a3-a083-aa029edfffad)
+
+---
+
+### 4. **Store Chunks into vector DB** - `POST /store/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/store/1`  
+     *(Replace `1` with your project ID)*
+   - **Method**: `POST`
+   - **Description**: This route stores the processed data chunks into the database.
+     ![image](https://github.com/user-attachments/assets/545a34a9-a41f-4d07-aa67-8f0760ff7cf4)
+
+
+---
+
+### 5. **Vector DB Info** - `GET /info/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/info/1`  
+     *(Replace `1` with your project ID)*
+   - **Method**: `GET`
+   - **Description**: This route provides information about the vector database for the given project.
+     ![image](https://github.com/user-attachments/assets/a8d1e191-ba13-4801-bfbc-28e058cc05d9)
+
+
+---
+
+### 6. **Similarity Search** - `POST /search/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/search/1`  
+     *(Replace `1` with your project ID)*
+   - **Method**: `POST`
+   - **Request Body**:
+     ```json
+     {
+       "query": "Your search query",
+       "limit": 5
+     }
+     ```
+   - **Description**: This route performs a similarity search based on the provided query. You can specify the number of results with the `limit` field.
+     ![image](https://github.com/user-attachments/assets/65d7ac92-f029-49bf-aa2e-a24262435724)
+
+---
+
+### 7. **Generate Response** - `POST /generate/{project_id}`
+   - **URL**: `http://127.0.0.1:8080/generate/1`  
+     *(Replace `1` with your project ID)*
+   - **Method**: `POST`
+   - **Request Body**:
+     ```json
+     {
+       "query": "Your query here",
+       "limit": 1
+     }
+     ```
+   - **Description**: This route generates a response based on the provided query. The `limit` specifies how many results to return.
+     ![image](https://github.com/user-attachments/assets/0606342b-56ac-48ea-963e-72c9e99eb882)
+---
+
+### Testing the API
+
+To test any of the routes:
+
+1. Open **Postman**.
+2. Choose the **HTTP method** (`GET` or `POST`) for your request.
+3. Enter the **URL** (replace the `project_id` or query parameters as needed).
+4. If it’s a **POST** request, set the request body accordingly.
+5. Click **Send** to test the route.
+6. Review the response from the API to ensure it’s working correctly.
+
+---
+### Testing
+
+Include test cases for the following scenarios:
+
+- Queries with Answers in the Data: Ensure the app retrieves and generates accurate responses.
+- Out-of-Scope Queries: Validate that the app does not provide answers when the query is unrelated to the uploaded data.
+- Edge Cases:
+  - Empty queries
+  - Extremely long queries
+  - Invalid file uploads
