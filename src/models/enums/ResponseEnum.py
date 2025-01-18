@@ -1,5 +1,6 @@
 from enum import Enum
 
+# Enum for Response Signal
 class ResponseSignal(Enum):
     FILE_TYPE_NOT_SUPPORTED ="This file type is not supported"
     FILE_SIZE_NOT_ALLWOEDT ="This file size is not allowed"

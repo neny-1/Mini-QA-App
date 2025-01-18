@@ -16,7 +16,7 @@ system_prompt = Template("\n".join([
     "اسمك هو بوت طبي لاجابة عن الاسئلة المتعلقة بالطب"
 ]))
 
-#### Document ####
+#### Document #### 
 document_prompt = Template(
     "\n".join([
         "## المستند رقم: $doc_num",

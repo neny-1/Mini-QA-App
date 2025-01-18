@@ -7,11 +7,10 @@ from stores.vectordb.VectorDBProviderFactory import VectorDBProviderFactory
 from stores.llm.templates.TemplateParser import TemplateParser
 
 app = FastAPI()
-
-# when app start up =>event in fastapi =>start connection
+# here we will create the connection to the database and the client  
 async def startup_db_client():
 
-    settings = get_settings()
+    settings: base.Settings = get_settings()
     app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URL)
     app.db_client = app.mongo_conn[settings.MONGODB_DATABASE]
 

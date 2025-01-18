@@ -10,15 +10,15 @@ class AssetModel(BaseDataModel):
         super().__init__(db_client)
         self.collection=self.db_client[DataBaseEnum.COLLECTION_ASSET_NAME.value]
     
-    # function to add __init__ =>not asynch and init_collection =>asynch must have await
+    # hnadle the async call to create an instance of the class 
     @classmethod
-    async def create_instance(cls,db_client:object):  # __init__(self,db_client:object)
-        instance = cls(db_client)  # take an object from DataChunkModel and now it is have all values and functions of it
+    async def create_instance(cls,db_client:object)->object:  
+        instance = cls(db_client)  
         await instance.init_collection()
         return instance
     
     # check if there is an connectio or not if not create one
-    async def init_collection(self):
+    async def init_collection(self)->None:
         all_collections = await self.db_client.list_collection_names()
         if DataBaseEnum.COLLECTION_ASSET_NAME.value not in all_collections:
             self.collection = self.db_client[DataBaseEnum.COLLECTION_ASSET_NAME.value]
@@ -30,8 +30,7 @@ class AssetModel(BaseDataModel):
                     unique=index["unique"]
                 )
         
-    async def create_asset(self, asset: Asset):
-
+    async def create_asset(self, asset: Asset)->Asset:
         result = await self.collection.insert_one(asset.dict(by_alias=True, exclude_unset=True))
         asset.id = result.inserted_id
     
@@ -49,7 +48,7 @@ class AssetModel(BaseDataModel):
             for record in records
         ]
 
-    async def get_asset_record(self, asset_project_id: str, asset_name: str):
+    async def get_asset_record(self, asset_project_id: str, asset_name: str)->Asset:
 
         record = await self.collection.find_one({
             "asset_project_id": ObjectId(asset_project_id) if isinstance(asset_project_id, str) else asset_project_id,

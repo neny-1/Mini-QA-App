@@ -15,14 +15,14 @@ class NLPController(BaseController):
         self.embedding_client = embedding_client
         self.template_parser = template_parser
 
-    def create_collection_name(self, project_id: str):
+    def create_collection_name(self, project_id: str)->str:
         return f"collection_{project_id}".strip()
-    
-    def reset_vector_db_collection(self, project: Project):
+
+    def reset_vector_db_collection(self, project: Project)->str:
         collection_name = self.create_collection_name(project_id=project.project_id)
         return self.vectordb_client.delete_collection(collection_name=collection_name)
     
-    def get_vector_db_collection_info(self, project: Project):
+    def get_vector_db_collection_info(self, project: Project)->str:
         collection_name = self.create_collection_name(project_id=project.project_id)
         collection_info = self.vectordb_client.get_collection_info(collection_name=collection_name)
 
@@ -62,7 +62,7 @@ class NLPController(BaseController):
         return True
     
     # search_vector_db_collection for search route in nlp.py
-    def search_vector_db_collection(self, project: Project, query: str, limit: int = 5):
+    def search_vector_db_collection(self, project: Project, query: str, limit: int = 5)->str:
 
         # step 1 :get collection name
         collection_name = self.create_collection_name(project_id=project.project_id)
@@ -82,7 +82,7 @@ class NLPController(BaseController):
             return False
         return search_results
 
-    def answer_question(self, project: Project, query: str, limit: int = 10):
+    def answer_question(self, project: Project, query: str, limit: int = 10)->str:
 
         answer,full_prompt,chat_history = None,None,None
         # step 1: retrieve related documents

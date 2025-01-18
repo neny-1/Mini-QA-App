@@ -1,0 +1,28 @@
+http://127.0.0.1:8080/upload/1
+change message
+"signal": "Success upload the file and processed and stored in database succesfuly",
+make this in commend =>"file_id": "678a44c025f207c7357d4fd5"
+
+
+data set link
+https://huggingface.co/datasets/keivalya/MedQuad-MedicalQnADataset/viewer/default
+
+
+اسئلة
+ماهي اعراض متلازمة واردينبيرج
+هل تناول الشاي بعد المكملات الغذائية شيئ خطأ
+ماذا تعرف عن مناعة القطيع
+ماهو البوتوكس هل يمكنك اخباري بمصدر اجابتك و عن مكان الاجابة في ملف البيانات 
+حقن البوتوكس
+ماهي عملية القلب
+
+temperature=float(0.1)  =>0
+
+هشتغل علي تغيير الهووست بتاع دوكر  done
+بعدين ههتم شوية بتظبيط الكود و المودل => here code quality =>make functions ->Annotations and unit testing
+use  try:
+and except 
+
+هحاول اعمل انترفيس هحاول اسهل الدنيا في التسليم واشوف بديل ل بوست مان
+هحاول ارفعه علي هوست
+

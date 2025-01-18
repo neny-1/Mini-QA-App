@@ -10,9 +10,6 @@ class LLMInterface(ABC):
     def set_embedding_model(self,model_id:str,embedding_size:int):
         pass
 
-    # prompt =>user quetion he want to answer
-    # max_output_token =>make the output is not larger than this arg
-    # temperature 0 => almost fact  1,2 =>generate with creativatey
     @abstractclassmethod
     def generate_text(self,prompt:str,chat_history:list=[],max_output_tokens:int=None,temperature:float=None):
         pass

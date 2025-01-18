@@ -1,7 +1,7 @@
 from fastapi import FastAPI,APIRouter,Depends,UploadFile,status,Request,File,HTTPException
 from fastapi.responses import JSONResponse
 from models import ResponseSignal
-import aiofiles  #file cunks
+import aiofiles  
 import os
 import logging
 from helper.config import get_settings,Settings
@@ -13,25 +13,22 @@ from models.AssetModel import AssetModel
 from models.db_schemes import DataChunks, Asset
 from models.enums.AssetTypeEnum import AssetTypeEnum
 
-
-
-logger = logging.getLogger('uvicorn.error')
+logger: logging.Logger = logging.getLogger('uvicorn.error')
 
 data_router = APIRouter()
 
-# Instantiate the controller
+# instantiate the controllers
 data_controller = DataController()
 project_controller = ProjectController()
 
 @data_router.post("/upload/{project_id}") # endpoint
-# upload_data will tack file_id with type string,uploaded file
 async def upload_data(request:Request,project_id:str,file:UploadFile,app_settings:Settings =Depends(get_settings)):
     
     project_model= await ProjectModel.create_instance(db_client=request.app.db_client)
 
     project= await project_model.get_project_or_create_one(project_id=project_id)
 
-    # validate file properties
+    # validate the uploaded file 
     is_valid,result_signal = data_controller.validate_uploaded_file(file=file)
     if not is_valid:
         return JSONResponse(
@@ -41,18 +38,14 @@ async def upload_data(request:Request,project_id:str,file:UploadFile,app_setting
             }
         )
     
-    # use ProjectController to get the path and name of file that you want to store it in which directory
-    #project_dir_path = project_controller().get_project_path(project_id=file_id)
+    # 
     file_path,file_id = data_controller.generate_unique_filename(
         orig_file_name=file.filename,
         project_id=project_id
     )
     try:
-        # start take chunks and store it in file path
-        # wb weriting as binary =>open this file as binary 
-        # Start taking chunks and store them in the file path
         async with aiofiles.open(file_path, "wb") as f:
-            # Read chunks of the file in the specified chunk size
+            # read the file in chunks 
             while chunk := await file.read(app_settings.FILE_DEFAULT_CHUNK_SIZE):
                 await f.write(chunk)      
 
@@ -82,9 +75,7 @@ async def upload_data(request:Request,project_id:str,file:UploadFile,app_setting
 
     return JSONResponse(
             content={
-                #"file_name": asset_record.asset_project_id,
                 "signal": ResponseSignal.FILL_Success_upload.value,
-                "file_id": str(asset_record.id),
             }
         )
 

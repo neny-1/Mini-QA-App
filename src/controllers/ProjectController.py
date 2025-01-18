@@ -7,13 +7,13 @@ class ProjectController(BaseController):
 
     def __init__(self):
         super().__init__()
-    
-    def get_project_path(self,project_id:str):
+    # 
+    def get_project_path(self,project_id:str)->str:
         project_dir=os.path.join(
-            self.files_dir, # self.files_dir from base controller
-            project_id      # join files_dir/project_id  now we get the uplodad file fully path
+            self.files_dir, 
+            project_id      
         )
-        # we will check if this file path is not exist create file with this name in this path
+        # check if project directory is exist or not if not create it
         if not os.path.exists(project_dir):
             os.makedirs(project_dir)
 

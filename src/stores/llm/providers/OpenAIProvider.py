@@ -6,7 +6,7 @@ import logging
 
 class OpenAIProvider(LLMInterface):
 
-    # api_url => if i use provider that through open ai
+    # if we want to use openai as a provider for LLM we have to implement the LLMInterface
     def __init__(self,api_key:str,api_url:str=None,
                     default_input_max_characters:int=1000,
                     default_generation_max_output_tokens:int=1000,
@@ -40,7 +40,7 @@ class OpenAIProvider(LLMInterface):
     def process_text(self,text:str):
         return text[:self.default_generation_max_output_tokens].strip()
     
-    # in case we use openai provider in gust embedding not generation but we have to call all LLMInterface as the strucure
+    # in case we use openai provider in embedding not generation but we have to call LLMInterface as the structure
     def generate_text(self,prompt:str,chat_history:list=[],max_output_tokens:int=None,temperature:float=None):
         if not self.client:
             self.logger.error("OpenAi client was not set")

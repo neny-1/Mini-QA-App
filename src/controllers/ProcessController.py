@@ -15,11 +15,11 @@ class ProcessController(BaseController):
         self.project_id = project_id
         self.project_path = ProjectController().get_project_path(project_id=project_id)
 
-    def get_file_extension(self,file_id:str):
+    def get_file_extension(self,file_id:str)->str:
         return os.path.splitext(file_id)[-1]
     
     # using langchain to create chunks
-    def get_file_loader(self,file_id:str):
+    def get_file_loader(self,file_id:str)->object:
         file_ext=self.get_file_extension(file_id=file_id)
         file_path = os.path.join(self.project_path,file_id)
 
@@ -32,12 +32,12 @@ class ProcessController(BaseController):
         return None #else
     
     # inside Loader() there is load() two objects document,metadata
-    def get_file_content(self,file_id:str):
+    def get_file_content(self,file_id:str)->list:
         loader = self.get_file_loader(file_id=file_id)
         return loader.load()
 
     # inside Loader().load().textsplitter() textsplitter means=>chunks there are two objects document,metadata
-    def process_file_content(self,file_content:list,file_id:str,chunk_size:int=100,chunk_overlap:int=20):
+    def process_file_content(self,file_content:list,file_id:str,chunk_size:int=100,chunk_overlap:int=20)->str:
         
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
