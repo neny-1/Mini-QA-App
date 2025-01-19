@@ -347,7 +347,7 @@ This application requires further enhancements, especially in the **LLM (Large L
 
 ### Resources
 
-I used this [YouTube playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj) as a resource and followed its project architecture. It provided valuable inspiration and guidance in building this application.
+I used this [mini RAG playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj) as a resource and followed its project architecture. It provided valuable inspiration and guidance in building this application.
 
 
     
