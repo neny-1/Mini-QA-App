@@ -340,13 +340,10 @@ This project is designed to ensure modularity and maintainability. Below is an o
 
 This structure promotes modularity, ease of maintenance, and scalability, making it suitable for a variety of use cases.
 
-#### Future Development
-
-This application requires further development, especially in the **LLM (Large Language Models)** part, to achieve satisfactory results in the **medical field**.
 
 ### Future Development
 
-This application requires further development, especially in the **LLM (Large Language Models)** part, to achieve satisfactory results especially in the **medical field**.
+This application requires further enhancements, especially in the **LLM (Large Language Models)** part, to achieve satisfactory results in the **medical field**.
 
 ### Resources
 
