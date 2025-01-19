@@ -268,11 +268,19 @@ Include test cases for the following scenarios:
 
   ![image](https://github.com/user-attachments/assets/bfa7c14c-34e6-4b39-bea7-bd62a1ef9150)
 - **Out-of-Scope Queries**: Validate that the app does not provide answers when the query is unrelated to the uploaded data.
-
-
+  ![image](https://github.com/user-attachments/assets/f3395084-01d5-45d3-a245-1d3a5c710bb8)
+  ![image](https://github.com/user-attachments/assets/60ca2ce2-fcce-421a-8454-2fae61cfa333)
 
 - **Edge Cases**:
   - Empty queries
+    ![image](https://github.com/user-attachments/assets/821fb1bd-c45e-483b-bdf7-70f0f904eb80)
+    ![image](https://github.com/user-attachments/assets/25332ef3-8cc3-4784-9d83-2db16d964c1b)
+
   - Extremely long queries
+    ![image](https://github.com/user-attachments/assets/997c8d44-ce90-4fb0-8e7d-68e13c6316dc)
+
   - Invalid file uploads
+    ![image](https://github.com/user-attachments/assets/d2cd9c0a-8bd0-442d-a5fe-9df9e485cdcf)
+    
+
 
