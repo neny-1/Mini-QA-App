@@ -1,6 +1,6 @@
 # Mini-QA-App
 
-Mini-QA-App is a question-answering application designed for processing and retrieving relevant information from user-provided data. The app allows users to upload data files, and when users submit queries, the app processes the query, finds the most relevant answers based on similarity, and provides the response. If a query is out of scope, the app will not provide an answer.
+Mini-QA-App is an intelligent question-answering application designed to process and retrieve precise information from user-provided data. When users submit queries, the app identifies the most relevant answers based on similarity and delivers accurate responses. If a question falls outside the scope of the provided data, the app will respond by indicating that the requested information is not available within its knowledge base.
 
 ## How It Works
 
@@ -232,9 +232,7 @@ You can use Postman to test the endpoints of the Mini-QA-App by making HTTP requ
      ![image](https://github.com/user-attachments/assets/0606342b-56ac-48ea-963e-72c9e99eb882)
 ---
 
-### Testing the API
-
-To test any of the routes:
+### How to Test the API Endpoints
 
 1. Open **Postman**.
 2. Choose the **HTTP method** (`GET` or `POST`) for your request.
@@ -243,14 +241,38 @@ To test any of the routes:
 5. Click **Send** to test the route.
 6. Review the response from the API to ensure it’s working correctly.
 
+To test any of the routes, use the following API links:
+
+- **Welcome**: `http://127.0.0.1:8080/` (GET)
+- **Upload Data File**: `http://127.0.0.1:8080/upload/{project_id}` (POST, where `{project_id}` is the ID for the project/topic)
+- **Process Data File**: `http://127.0.0.1:8080/process/{project_id}` (POST, takes JSON body with `"chunk_size"`, `"overlap_size"`, and `"do_reset"`)
+- **Store Chunks into DB**: `http://127.0.0.1:8080/store/{project_id}` (POST)
+- **Vector DB Info**: `http://127.0.0.1:8080/info/{project_id}` (GET)
+- **Similarity Search**: `http://127.0.0.1:8080/search/{project_id}` (POST, requires `"query"` and `"limit"`)
+- **Generate**: `http://127.0.0.1:8080/generate/{project_id}` (POST, requires `"query"` and `"limit"`)
 ---
 ### Testing
+  
+#### Sample Data Source
+The sample data used as source from the following website:  
+[https://www.nasaaem.com/ar/medical-information](https://www.nasaaem.com/ar/medical-information)
+
+#### Data Folder Link
+After converting the data to PDF files, the data files can be accessed from the following Google Drive folder:  
+[https://drive.google.com/drive/folders/1fqhXkQPBtndhrN15-KMXGaI3JTFL_wy6?usp=drive_link](https://drive.google.com/drive/folders/1fqhXkQPBtndhrN15-KMXGaI3JTFL_wy6?usp=drive_link)
 
 Include test cases for the following scenarios:
 
-- Queries with Answers in the Data: Ensure the app retrieves and generates accurate responses.
-- Out-of-Scope Queries: Validate that the app does not provide answers when the query is unrelated to the uploaded data.
-- Edge Cases:
+- **Queries with Answers in the Data**: Ensure the app retrieves and generates accurate responses based on the uploaded data.
+  ![image](https://github.com/user-attachments/assets/3ddcc076-2fde-455c-8c68-19586430a813)
+
+  ![image](https://github.com/user-attachments/assets/bfa7c14c-34e6-4b39-bea7-bd62a1ef9150)
+- **Out-of-Scope Queries**: Validate that the app does not provide answers when the query is unrelated to the uploaded data.
+
+
+
+- **Edge Cases**:
   - Empty queries
   - Extremely long queries
   - Invalid file uploads
+
