@@ -286,6 +286,73 @@ Include test cases for the following scenarios:
 
   - Invalid file uploads
     ![image](https://github.com/user-attachments/assets/d2cd9c0a-8bd0-442d-a5fe-9df9e485cdcf)
+
+
+### Project Architecture and code structure 
+
+This project follows a **Model-View-Controller (MVC)** architecture to ensure a clean separation of concerns and enhance scalability. Below is the breakdown of the directory structure and its components:
+
+#### Project Structure
+
+This project is designed to ensure modularity and maintainability. Below is an overview of the main folders and their purposes.
+
+##### 1. **`assets/`**
+   - Purpose: To store data files and vector database files.
+   - Contains:
+     - Files necessary for data storage 
+     - Vector database-related resources.
+
+###### 2. **`controllers/`**
+   - Purpose: Contains the core logic of the application.
+
+###### 3. **`models/`**
+   - Purpose: Manages all database-related operations.
+   - Contains:
+     - **`db_schemes/`**: Defines database schemas.
+     - **`enums/`**: Enumerations for handling constants and response types.
+
+###### 4. **`routes/`**
+   - Purpose: Manages API routes and their corresponding request/response schemas.
+   - Contains:
+     - Logic to define and handle application routes.
+
+###### 5. **`stores/`**
+   - Purpose: Manages LLM configurations, vector database logic, and state management.
+   - Contains:
+     - **`llm/`**: Manages large language models (LLMs).
+       - **`providers/`**: Configurations and integrations for providers like OpenAI and Cohere.
+       - **`templates/`**:
+         - **`locales/`**: Localization templates for different languages.
+           - **`ar/`**: Arabic templates.
+           - **`en/`**: English templates.
+     - **`vectordb/`**: Handles vector database logic and integrations.
+       - Includes the `QdrantProvider.py` file for managing Qdrant, the vector database provider.
+
+##### Environment Files
+
+- **`.env`**: Stores sensitive environment variables (e.g., API keys, database credentials).
+- **`.env.example`**: Example environment file to guide setup for new developers.
+
+#### Supporting Files
+
+- **`main.py`**: The main entry point of the application.
+- **`requirements.txt`**: Lists all the Python dependencies required to run the application.
+
+This structure promotes modularity, ease of maintenance, and scalability, making it suitable for a variety of use cases.
+
+#### Future Development
+
+This application requires further development, especially in the **LLM (Large Language Models)** part, to achieve satisfactory results in the **medical field**.
+
+### Future Development
+
+This application requires further development, especially in the **LLM (Large Language Models)** part, to achieve satisfactory results especially in the **medical field**.
+
+### Resources
+
+I used this [YouTube playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj) as a resource and followed its project architecture. It provided valuable inspiration and guidance in building this application.
+
+
     
 
 
