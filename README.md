@@ -86,14 +86,19 @@ Before you can run the application, you need to install the following tools:
      cd src
      ```
 
-5. **Set Environment Variables**:
+5. **### .env Configuration **:
    - Copy the example environment file:
      ```bash
      cp .env.example .env
      ```
-   - Open `.env` and set the required variables, such as `COHERE_API_KEY` or `OPENAI_API_KEY`.
-
----
+   - **Set API Keys**:  
+     Open `.env` and set the required variables, such as `COHERE_API_KEY` or `OPENAI_API_KEY`, for the app to function properly.
+   
+   - **Set Language**:  
+     You can also set the primary language for data processing and generation by configuring the `PRIMARY_LANG` variable in `.env`. The available languages are:
+     - `ar` for Arabic
+     - `en` for English
+   ---
 ### Run the Application
 
 1. **Run Docker Using Docker Compose**:
