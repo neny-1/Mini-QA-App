@@ -86,7 +86,7 @@ Before you can run the application, you need to install the following tools:
      cd src
      ```
 
-5. **### .env Configuration **:
+5. **.env Configuration **:
    - Copy the example environment file:
      ```bash
      cp .env.example .env
@@ -102,7 +102,7 @@ Before you can run the application, you need to install the following tools:
 ### Run the Application
 
 1. **Run Docker Using Docker Compose**:
-  - Navigate to the folder where your `docker-compose.yml` file is located in docker folder.
+  - Navigate to `docker-compose.yml` file is located in docker folder.
   - Right-click and select **Compose Up** (if using Docker Desktop).
 
    This will start all the services defined in the `docker-compose.yml` file, including MongoDB.
@@ -296,7 +296,7 @@ This project follows a **Model-View-Controller (MVC)** architecture to ensure a 
 
 This project is designed to ensure modularity and maintainability. Below is an overview of the main folders and their purposes.
 
-##### 1. **`assets/`**
+###### 1. **`assets/`**
    - Purpose: To store data files and vector database files.
    - Contains:
      - Files necessary for data storage 
@@ -347,7 +347,7 @@ This application requires further enhancements, especially in the **LLM (Large L
 
 ### Resources
 
-I used this [mini RAG playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj) as a resource and followed its project architecture. It provided valuable inspiration and guidance in building this application.
+I used this [Mini RAG Playlist](https://www.youtube.com/playlist?list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj) as a resource and followed its project architecture. It provided valuable inspiration and guidance in building this application.
 
 
     
